@@ -28,7 +28,7 @@ MANIFEST
 yt
 .env
 data/
-db/
+db
 .pdf
 
 # PyInstaller

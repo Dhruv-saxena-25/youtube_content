@@ -8,14 +8,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+
+## Generating the Reranked result from user query and pass it to LLM to get refined output as answer.
 def generation():
     embeddings = load_embedding()
     persist_directory = "db"
+
+    # Loading Vectors from chromadb
     vectordb = Chroma(persist_directory=persist_directory,
                   embedding_function=embeddings)
     
     retriever= vectordb.as_retriever(search_type="mmr", search_kwargs={"k":8})
     
+    ## Initializing Prompt
     YOUTUBE_BOT_TEMPLATE = """
     Your are youtube video url bot is an expert in  giving answers based on the youtube video.
     also if person tells to summarize the video you have to summarize the whole youtube video.
@@ -33,12 +38,17 @@ def generation():
     YOUR ANSWER:
     
     """
+    ## Creating prompt template
     prompt = PromptTemplate(template= YOUTUBE_BOT_TEMPLATE, input_variable= ["context", "question"])
-
+    
+    ## Initilizing LLM
     llm = ChatGoogleGenerativeAI(model= "gemini-1.5-pro", temperature=0.8)
-
+    
+    ## Creating Memory 
     memory = ConversationSummaryMemory(llm=llm, memory_key = "chat_history", return_messages=True)
+    
 
+    ## Declaring the Chain
     chain = RetrievalQA.from_chain_type(llm=llm,
                                         chain_type= "stuff",
                                         retriever= retriever,

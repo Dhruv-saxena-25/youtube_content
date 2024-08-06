@@ -2,7 +2,9 @@ from flask import Flask, render_template,  jsonify, request
 from src.retrieval_generation import generation
 from src.data_converter import load_embedding, url_ingest, load_text, text_splitter
 from src.store_index import vector_index
-import os
+import shutil
+import os 
+import sys
 
 
 app = Flask(__name__)
@@ -23,8 +25,6 @@ def link():
         document= load_text()
         text_splitter(document)
         vector_index()
-        # chain = generation()
-        # os.system("python src.store_index.py")
     return ""
 
 
@@ -35,7 +35,10 @@ def chat():
     msg = request.form["msg"]
     input = msg
     if input == "clear":
-        os.system("rm -rf data")
+        if os.path.exists("data"):
+            shutil.rmtree("data")
+    
+
     result=chain({"query": input})
     print("Response : ", result["result"])
     return str(result["result"])
