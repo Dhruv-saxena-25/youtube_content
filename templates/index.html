@@ -16,7 +16,7 @@
   </head>
   <body style="background-color:pink;">
     <div class="container">
-      <h1>Give YouTube Link Here:</h1>
+      <h1 style="color: white;">Give YouTube Link Here:</h1>
       <br>
       <hr>
       <br>
@@ -115,7 +115,7 @@
 									<span class="online_icon"></span>
 								</div>
 								<div class="user_info">
-									<span>YouTube Video Bot</span>
+									<span>YouTube Chatbot</span>
 									<p>Ask anything!</p>
 								</div>
 							</div>
@@ -158,7 +158,7 @@
 						type: "POST",
 						url: "/get",
 					}).done(function(data) {
-						var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://p7.hiclipart.com/preview/1010/961/279/computer-icons-source-code-html-coding.jpg" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
+						var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://static.vecteezy.com/system/resources/thumbnails/007/225/199/small_2x/robot-chat-bot-concept-illustration-vector.jpg" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
 						$("#messageFormeight").append($.parseHTML(botHtml));
 					});
 					event.preventDefault();

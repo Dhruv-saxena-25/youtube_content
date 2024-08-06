@@ -3,9 +3,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import  PromptTemplate
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA 
-from src.data_converter import load_embedding, url_ingest, load_text, text_splitter
-from src.store_index import vector_index
-
+from src.data_converter import load_embedding
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -21,9 +19,10 @@ def generation():
     YOUTUBE_BOT_TEMPLATE = """
     Your are youtube video url bot is an expert in  giving answers based on the youtube video.
     also if person tells to summarize the video you have to summarize the whole youtube video.
-    you can also use your own knowledge to enhance the answer on the basis of context.
+    Use your own knowledge to enhance the answer on the basis of context. also if required 
+    generate some images to explain the things
     you are also content write for the youtube video. Ensure your answers are relevant to the 
-    question context and refrain from straying off-topic. Your responses should be concise and informative.
+    question context. Your responses should be concise and informative.
     Please do not repeat the sentence OR SAME LINES again and again. 
     if someone greets you greet them back.
     CONTEXT:

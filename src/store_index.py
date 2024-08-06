@@ -16,8 +16,8 @@ def vector_index():
     vectordb.persist()
 
 
-# if __name__ == "__main__":
-#     vector_index()
+if __name__ == "__main__":
+    vector_index()
     
 
 
