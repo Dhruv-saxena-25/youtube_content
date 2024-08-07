@@ -11,12 +11,12 @@ body,html{
 	margin-bottom: auto;
 }
 .card{
-	height: 450px;
+	height: 700px;
 	border-radius: 15px !important;
 	background-color: rgba(0,0,0,0.4) !important;
 }
 .contacts_body{
-	padding:  0.25rem 0 !important;
+	padding:  0.85rem 0 !important;
 	overflow-y: auto;
 	white-space: nowrap;
 }
